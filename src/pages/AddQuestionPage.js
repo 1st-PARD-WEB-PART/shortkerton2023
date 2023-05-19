@@ -1,9 +1,8 @@
 
 import NewQuestionForm from "../components/NewQuestionForm";
-import { GetCurrentUser, GoogleLogin, IsLogin, Logout } from "../services/AuthService";
+import { GetCurrentUser} from "../services/AuthService";
 import { useEffect, useState } from 'react';
 import { auth } from '../firebase';
-import { Button } from "@mui/material";
 import styled from "styled-components";
 // import CollectPage from "./CollectPage";
 // import { useNavigate } from 'react-router-dom';
@@ -73,24 +72,18 @@ const ThirdText = styled.text`
 
 
 const AddQuestionPage = () => {
-    const [userInfo, setUserInfo] = useState(null);
+    const [userInfo, setUserInfo] = useState(GetCurrentUser());
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
             setUserInfo(user);
         })
     });
-    const handleLogin = async () => {
-        await GoogleLogin();
-    };
 
-    const handleLogout = async () => {
-        await Logout();
-    };
     return (
         <Div>
             <FirstDiv>
                 <TextButton>답변보기</TextButton>
-                <TextButton onClick={IsLogin() ? handleLogout : handleLogin} >{IsLogin() ? userInfo.displayName : "로그인"}</TextButton>
+                <TextButton>{userInfo.displayName}</TextButton>
             </FirstDiv>
             <Title>궁그매</Title>
             <SecondDiv>
