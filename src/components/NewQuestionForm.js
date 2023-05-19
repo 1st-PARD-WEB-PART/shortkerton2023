@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { TextField, Button } from '@mui/material';
+import { AddNewQuestion } from '../services/DbService';
+import { GetCurrentUser } from '../services/AuthService';
 
 const Form = styled.form`
   position: absolute;
@@ -17,9 +20,6 @@ const Input = styled.input`
   color: #5262f5;
 `;
 
-const Button = styled.button`
-  color: #5262f5;
-`;
 
 const NewQuestionForm = () => {
   const [managerData, setManagerData] = useState([
@@ -36,7 +36,6 @@ const NewQuestionForm = () => {
   ]);
 
   const handleClick = () => {
-    console.log(managerData);
   };
 
   const handleInputChange = (event, id) => {
@@ -56,16 +55,11 @@ const NewQuestionForm = () => {
   return (
     <Form>
       {managerData.map((content) => (
-        <div key={content.id}>
-          <H1>{content.name}</H1>
-          <Input
-            type="text"
-            value={content.value}
-            onChange={(event) => handleInputChange(event, content.id)}
-          />
+        <div key={content.id} style={{margin: "20px 0px"}}>
+          <TextField id="outlined-basic" label={content.name} variant="outlined" value={content.value} onChange={(event) => handleInputChange(event, content.id)} />
         </div>
       ))}
-      <Button onClick={handleClick}>제출하기</Button>
+      <Button variant="contained" onClick={handleClick} disabled = {GetCurrentUser() == null}>제출하기</Button>
     </Form>
   );
 };
