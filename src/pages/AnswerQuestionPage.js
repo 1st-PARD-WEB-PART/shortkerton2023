@@ -18,10 +18,9 @@ export default function AnswerQuestionPage() {
         })
 
         const FetchData = async () => {
-            console.log(questionId);
             const questionRef = await ReadQuestion({ questionId: questionId });
             const data = questionRef.data();
-
+            
             setQuestionData(data);
         }
 
@@ -36,6 +35,7 @@ export default function AnswerQuestionPage() {
         await Logout();
     };
     return <>
+    {console.log("question data: " + questionData)}
         {userInfo
             ? <Button onClick={handleLogout}>로그인아웃</Button>
             : <Button onClick={handleLogin}>로그인</Button>
