@@ -13,7 +13,7 @@ const AnswerQuestionForm = ({ user, questionData }) => {
         if(user){
             answerDocRef = await AddNewAnswer({ userId: user.uid, questionId: questionData.questionId, answer: answer });
         } else{
-            answerDocRef = await AddNewAnswerAsNotUser({userName: userName ?? "anonymous", questionId: questionData.questionId, answer: answer});
+            answerDocRef = await AddNewAnswerAsNotUser({userName: name ?? "anonymous", questionId: questionData.questionId, answer: answer});
         }
     };
 
