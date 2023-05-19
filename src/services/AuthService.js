@@ -19,10 +19,8 @@ const Logout = async () => {
 const LoginWithProvider = async ({ provider }) => {
     await signInWithPopup(auth, provider) // 팝업창 띄워서 로그인
         .then((data) => { // user data 설정
-            console.log(data); // console에 UserCredentialImpl 출력
         })
         .catch((err) => {
-            console.log(err);
         });
 }
 

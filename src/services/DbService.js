@@ -7,13 +7,11 @@ const answerCollection = collection(db, "answer");
 const userCollection = collection(db, "user");
 
 const SendQuery = async ({q}) => {
-    console.log(q);
     const querySnapshot = await getDocs(q);
     return querySnapshot.docs.map((snap) => snap.data());
 }
 
 const ReadQuestion = async ({questionId}) => {
-    console.log("got: " + questionId);
     const questionRef = doc(db, "question", questionId);
     return await getDoc(questionRef);
 }
@@ -38,12 +36,14 @@ const ReadAllAnswerOfMyQuestion = async ({userId, questionId}) => {
 
 const ReadMyAnswerOfQuestion = async ({userId, questionId}) => {
     const q = query(answerCollection, where("questionId", "==", questionId), where("userId", "==", userId));
-    return SendQuery({q: q});
+    const foundedAnswer = SendQuery({q: q});
+    return foundedAnswer.length > 0 ? (await foundedAnswer).at(0) : null;
 }
 
 const ReadUserByUid = async ({userId}) => {
-    const q = query(userCollection, where("userId", "==", userId));
-    return SendQuery({q: q});
+    const docRef = doc(db, "user", userId);
+    const userSnapshot = await getDoc(docRef);
+    return userSnapshot;
 }
 
 const AddNewAnswerAsNotUser = async ({userName, questionId, answer}) => {
@@ -91,17 +91,15 @@ const AddNewQuestion = async ({userId, question}) => {
 
 const AddNewUser = async ({user}) => {
     console.log({user})
-    const foundUser = (await ReadUserByUid({userId: user.uid}));
-    console.log("foundUser : " + foundUser + " type : " + typeof(foundUser));
-    if(foundUser.length != 0){
+    const userSnapshot = (await ReadUserByUid({userId: user.uid}));
+    if(userSnapshot.exists){
         console.log("user is already saved in db");
         return;
     } 
-    console.log("user id: " + user.uid);
     const docRef = doc(db, "user", user.uid);
     const data = {
         userId: user.uid,
-        name: user.name,
+        name: user.displayName,
         registeredTime: serverTimestamp(),
     }
     await setDoc(docRef, data);
@@ -109,9 +107,15 @@ const AddNewUser = async ({user}) => {
     return docRef;
 }
 
+const GetUserDisplayNameByUserId = async ({userId}) => {
+    const userSnapshot = await ReadUserByUid({userId: userId});
+    const userData = userSnapshot.data();
+    return userData == null ? null : userData.name;
+}
+
 const DidAnswer = async ({userId, questionId}) => {
     const foundedAnswer = await ReadMyAnswerOfQuestion({userId: userId, questionId: questionId});
     return foundedAnswer.length > 0;
 }
 
-export {DidAnswer, AddNewUser, AddNewAnswerAsNotUser, ReadQuestion, AddNewAnswer, AddNewQuestion, ReadMyAnswerOfQuestion as ReadAllAnswerOfQuestion, ReadAllMyQuestion, ReadAllAnswerOfMyQuestion as ReadAllAnswerOfOwnQuestion};
+export {GetUserDisplayNameByUserId, DidAnswer, AddNewUser, AddNewAnswerAsNotUser, ReadQuestion, AddNewAnswer, AddNewQuestion, ReadMyAnswerOfQuestion as ReadAllAnswerOfQuestion, ReadAllMyQuestion, ReadAllAnswerOfMyQuestion as ReadAllAnswerOfOwnQuestion};
