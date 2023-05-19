@@ -1,5 +1,6 @@
 import { getAuth, signOut, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth"
 import { app } from "../firebase";
+import { AddNewAnswer, AddNewUser } from "./DbService";
 
 const auth = getAuth(app);
 
@@ -28,6 +29,7 @@ const LoginWithProvider = async ({ provider }) => {
 const GoogleLogin = async () => {
     const provider = new GoogleAuthProvider(); // provider 구글 설정
     await LoginWithProvider({ provider });
+    await AddNewUser({user: GetCurrentUser()});
 }
 
 const IsLogin = () => {

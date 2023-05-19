@@ -7,10 +7,6 @@ const AnswerQuestionForm = ({ user, questionData }) => {
     const [answer, setAnswer] = useState('');
     const [name, setName] = useState('');
 
-    useEffect(() => {
-        console.log("questionData: " + questionData);
-    }, []);
-
     const handleClick = async () => {
         if (!questionData) {
             console.log("question data is null");
