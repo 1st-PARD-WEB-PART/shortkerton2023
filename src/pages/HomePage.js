@@ -14,8 +14,8 @@ const Button = styled.button`
   font-size: 12px;
   padding : 40px;
   position: absolute;
-  left: 620px;
-  top: 501px;
+  left: 630px;
+  top: 600px;
 `;
 
 const Image = styled.img`
@@ -32,8 +32,9 @@ const ButtonQ = styled.button`
   color : #9ABBBE;
   font-size: 20px;
   position: absolute;
-  left: 610px;
-  top: 600px;
+  left: 620px;
+  top: 501px;
+
 `;
 
 const HomePage = () => {
