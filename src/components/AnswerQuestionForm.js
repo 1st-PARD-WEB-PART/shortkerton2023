@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { TextField, Button, Alert } from '@mui/material';
 import { AddNewAnswer, AddNewAnswerAsNotUser, AddNewQuestion, ReadAllAnswerOfQuestion } from '../services/DbService';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const AnswerQuestionForm = ({ user, questionData }) => {
     const [answer, setAnswer] = useState('');
@@ -161,7 +162,9 @@ const AnswerQuestionForm = ({ user, questionData }) => {
                     </AWrap>
                     <br></br>
                     <SWrap>
-                        <Button variant="contained" onClick={handleClick} disabled={user != null ? (answer == '') : (answer == '' || name == '')}>답변 보내기</Button>
+                        <Link to="/home">
+                            <Button variant="contained" onClick={handleClick} disabled={user != null ? (answer == '') : (answer == '' || name == '')}>답변 보내기</Button>
+                        </Link>
                     </SWrap>
                 </>
         }
