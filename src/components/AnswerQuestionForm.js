@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { TextField, Button, Alert } from '@mui/material';
 import { AddNewAnswer, AddNewAnswerAsNotUser, AddNewQuestion } from '../services/DbService';
+import styled from 'styled-components';
 
 const AnswerQuestionForm = ({ user, questionData }) => {
     const [answer, setAnswer] = useState('');
@@ -31,23 +32,107 @@ const AnswerQuestionForm = ({ user, questionData }) => {
         }
     }
 
+
+    const Wrap = styled.div`
+        width: 444px;
+        height: 603px;
+        background-color: #FACCDA;
+        justify-content: center;
+        border-radius: 40px;
+        /* margin-bottom: 50px; */
+    `
+
+    const Name = styled.div`
+        font-family: '210 Gulim';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 19px;
+        line-height: 157.52%;
+        text-align: center;
+        color: #FFFFFF;
+        margin-top: 30px;
+    `
+
+    const Q = styled.div`
+        font-family: 'Noto Sans KR';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 280%;
+        text-align: center;
+        letter-spacing: -0.006em;
+        color: #757575;
+        margin-top: 10px;
+    `
+    const Induce = styled.div`
+        font-family: 'Noto Sans KR';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 7px;
+        line-height: 17px;
+        text-align: center;
+        letter-spacing: -0.006em;
+        color: #C99FA9;
+        margin-top: 170px;
+    `
+
+    const AWrap = styled.div`
+        align-items: center;
+        margin-top: 40px;
+        margin-left: 55px;
+    `
+    const SWrap = styled.div`
+        align-items: center;
+        margin-top: -230px;
+        margin-left: 170px;
+    `
+
+    const NWrap = styled.div`
+        width:182px;
+        height:31px;
+        margin-bottom: -20px;
+    `
+
+    const Cloud = styled.svg`
+        width: 20px;
+        height: 20px;
+        fill: none;
+        margin-left: 29px;
+        margin-top: 10px;
+    `
+
+    const StyledPath = styled.path`
+        stroke: white;
+    `;
+
     return (
-        <> {
+        <Wrap> {
             questionData == null
                 ? <>cannot find question data</>
                 : <>
-                    {questionData.creatorId}의 질문
-                    {questionData.question}
-                    <TextField id="answer" label={"answer"} variant="outlined" value={answer} onChange={(event) => handleOnChange(event)} />
-                    {
-                        user == null
-                            ? <TextField id="name" label={"name"} variant="outlined" value={name} onChange={(event) => handleOnChange(event)} />
-                            : <></>
-                    }
-                    <Button variant="contained" onClick={handleClick} disabled={user != null ? (answer == '') : (answer == '' || name == '')}>제출하기</Button>
+                    <div>
+                        {/* <Cloud width="20" height="20" viewBox="0 0 20 20"/>
+                            <StyledPath d="M19.1906 0.5L10.3088 0.5L0.80901 19.5H9.69077L19.1906 0.5Z" /> */}
+                            <Name>{questionData.creatorId}의 질문</Name><br></br>
+                    </div>
+                    <Q>Q.<br></br>{questionData.question}</Q>
+                    <br></br>
+                    <Induce>{questionData.creatorId}님의 답변을 보려면 나의 답변을 작성해주세요!</Induce>
+                    <AWrap>
+                        <TextField id="answer" label={"답변입력하기"} variant="outlined" value={answer} onChange={(event) => handleOnChange(event)} sx={{ width: '340px', height: "300px" }} />
+                        {
+                            user == null
+                                ? <NWrap><TextField id="name" label={"이름 혹은 닉네임 입력"} variant="outlined" value={name} onChange={(event) => handleOnChange(event)} /></NWrap>
+                                : <></>
+                        }
+                    </AWrap>
+                    <br></br>
+                    <SWrap>
+                        <Button variant="contained" onClick={handleClick} disabled={user != null ? (answer == '') : (answer == '' || name == '')}>답변 보내기</Button>
+                    </SWrap>
                 </>
         }
-        </>
+        </Wrap>
     );
 };
 
