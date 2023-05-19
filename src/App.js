@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
          <Routes>
              <Route path="/Home" element={<HomePage />} />
              <Route path="/" element={<OnBoardingPage />} />
-             <Route path="/ViewAnsers" element={<ViewAnswersPage />} />
+             <Route path="/ViewAnswers" element={<ViewAnswersPage />} />
              <Route path="/About" element={<AboutPage />} />
              <Route path='/pard-website' element={<HomePage />} />
          </Routes>
