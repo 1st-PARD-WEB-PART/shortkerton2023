@@ -1,5 +1,11 @@
-import TextField from "../components/TextField";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useState } from "react";
+import { auth } from "../../src/firebase";
+import styled from 'styled-components';
 
+const Button = styled.button`
+background : white;
+`;
 function HomePage() {
     const [userData, setUserData] = useState(null);
     function handleGoogleLogin() {
@@ -17,7 +23,12 @@ function HomePage() {
 
     return (
         <div>        
-            
+          <Button onClick={handleGoogleLogin}>로그인</Button>
+                  <div>
+        {userData
+          ? userData.displayName
+          : ""}
+      </div>
         </div>
     );
 
