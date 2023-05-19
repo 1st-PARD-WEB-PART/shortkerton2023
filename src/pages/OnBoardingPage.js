@@ -1,7 +1,7 @@
 function OnBoardingPage() {
     
     return <div>
-
+        
     </div>
 }
 
