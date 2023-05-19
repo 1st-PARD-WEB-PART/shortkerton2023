@@ -39,8 +39,21 @@ const ReadAllAnswerOfQuestion = async ({userId, questionId}) => {
     return SendQuery(q);
 }
 
+const AddNewAnswerAsNotUser = async ({userName, questionId, answer}) => {
+    const answerId = uuid();
+    const docRef = doc(db, "answer", answerId);
+    const data = {
+        answerId : answerId,
+        questionId : questionId,
+        userName : userName,
+        answer : answer,
+        createdTime : serverTimestamp(),
+    };
+    await setDoc(docRef, data);
+    return docRef;
+}
+
 const AddNewAnswer = async ({userId, questionId, answer}) => {
-    console.log({userId, questionId, answer})
     const answerId = uuid();
     const docRef = doc(db, "answer", answerId);
     const data = {
@@ -69,4 +82,4 @@ const AddNewQuestion = async ({userId, question}) => {
     return docRef;
 }
 
-export {ReadQuestion, AddNewAnswer, AddNewQuestion, ReadAllAnswerOfQuestion, ReadAllMyQuestion, ReadAllAnswerOfOwnQuestion};
+export {AddNewAnswerAsNotUser, ReadQuestion, AddNewAnswer, AddNewQuestion, ReadAllAnswerOfQuestion, ReadAllMyQuestion, ReadAllAnswerOfOwnQuestion};
