@@ -9,16 +9,15 @@ const AnswerQuestionForm = ({ user, questionData }) => {
     const [hisAnswer, setHisAnswer] = useState('');
 
     const fetchAnswerData = async () => {
-        if (questionData) {
-
-        }
+        // while(questionData == null){
+        //     console.log(".");
+        // }
         const foundedAnswerData = await ReadAllAnswerOfQuestion({ userId: questionData.creatorId, questionId: questionData.questionId });
         console.log(foundedAnswerData);
         setHisAnswer(foundedAnswerData == null ? null : foundedAnswerData.answer);
     }
 
     useEffect(() => {
-
         fetchAnswerData();
 
     }, [])
