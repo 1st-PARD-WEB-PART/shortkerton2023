@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import { GetCurrentUser, GoogleLogin, IsLogin, Logout } from "../services/AuthService";
-import { useState } from 'react';
+import { useState , useEffect } from 'react';
+import { auth } from '../firebase';
 import HomeImage from '../assets/img/home.svg';
+import { useNavigate } from 'react-router-dom';
 
 const Wrapper = styled.div`
   position: relative;
@@ -38,7 +40,17 @@ const ButtonQ = styled.button`
 `;
 
 const HomePage = () => {
-  const [userInfo, setUserInfo] = useState(null);
+  const [userInfo, setUserInfo] = useState(GetCurrentUser());
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+        setUserInfo(user);
+    })
+  });
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate('/NewQuestion');
+  };
 
   const handleLogin = async () => {
     const user = await GoogleLogin();
@@ -58,7 +70,7 @@ const HomePage = () => {
 
         <Button onClick={IsLogin() ? handleLogout : handleLogin} >{IsLogin() ? "로그아웃" : "질문을 만드려면 로그인을 하세요>"}</Button>
 
-        <ButtonQ>질문만들기</ButtonQ>
+        <ButtonQ onClick={userInfo ? handleNavigate : handleLogin}>질문만들기</ButtonQ>
     </Wrapper>
   );
 }
