@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 function AboutPage() {
@@ -8,3 +9,5 @@ function AboutPage() {
 }
 
 export default AboutPage;
+=======
+>>>>>>> refs/remotes/origin/main
