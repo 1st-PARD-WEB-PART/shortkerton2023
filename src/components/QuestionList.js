@@ -63,32 +63,6 @@ const QuestionList = () => {
         <PartDiv>
             <CollectWrapper>
                 <Collect>
-                    <H1>"답변이 도착했어요!"</H1>
-                    <H2>질문 클릭시 답변 확인이 가능합니다.</H2>
-                    <br></br><br></br>
-                    {part.map((item) => (
-                        <Accordion key={item.id} sx={{ width: '400px', backgroundColor: '#818181' }}>
-                            <AccordionSummary
-                                aria-controls={`panel${item.id}-content`}
-                                id={`panel${item.id}-header`}
-                            >
-                                <Typography>{item.q}</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <div>
-                                    {item.answer.map((answer, index) => (
-                                        <div key={index}>
-                                            <Typography>"{answer.name}"님의 답변</Typography>
-                                            <Typography>{answer.a}</Typography>
-                                            <br></br>
-                                        </div>
-                                    ))}
-                                </div>
-                            </AccordionDetails>
-                        </Accordion>
-                    ))}
-                </Collect>
-                <Collect>
                     <br></br><br></br>
                     <H1>"답변 모아보기"</H1>
                     <H2>최대 10개 보관 가능</H2>
