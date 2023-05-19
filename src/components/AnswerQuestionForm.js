@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { TextField, Button, Alert } from '@mui/material';
-import { AddNewAnswer, AddNewAnswerAsNotUser, AddNewQuestion, ReadAllAnswerOfQuestion } from '../services/DbService';
+import { AddNewAnswer, AddNewAnswerAsNotUser, AddNewQuestion, ReadAllAnswerOfQuestion, DidAnswer } from '../services/DbService';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -8,9 +8,10 @@ const AnswerQuestionForm = ({ user, questionData }) => {
     const [answer, setAnswer] = useState('');
     const [name, setName] = useState('');
     const [hisAnswer, setHisAnswer] = useState('');
+    const [alreadyAnswered, setAlreadyAnswered] = useState('');
 
     const fetchAnswerData = async () => {
-        if(questionData == null) return;
+        if (questionData == null) return;
         const foundedAnswerData = await ReadAllAnswerOfQuestion({ userId: questionData.creatorId, questionId: questionData.questionId });
         console.log(foundedAnswerData);
         setHisAnswer(foundedAnswerData == null ? null : foundedAnswerData.answer);
@@ -18,6 +19,13 @@ const AnswerQuestionForm = ({ user, questionData }) => {
 
     useEffect(() => {
         fetchAnswerData();
+        const checkAnswer = async () => {
+            const answered = await DidAnswer({
+                userId: questionData.creatorId,
+                questionId: questionData.questionId,
+            });
+            setAlreadyAnswered(answered);
+        };
 
     }, [])
 
