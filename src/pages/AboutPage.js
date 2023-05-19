@@ -1,10 +1,8 @@
-import { PageContaienr } from "../styles/pageGeneral";
-
 function AboutPage() {
     
-    return <PageContaienr>
+    return <div>
 
-    </PageContaienr>
+    </div>
 }
 
 export default AboutPage;
