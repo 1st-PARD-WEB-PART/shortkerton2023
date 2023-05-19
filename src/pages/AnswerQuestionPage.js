@@ -4,7 +4,6 @@ import { ReadQuestion } from "../services/DbService";
 import AnswerQuestionForm from "../components/AnswerQuestionForm";
 import { GoogleLogin, Logout } from "../services/AuthService";
 import { auth } from '../firebase';
-import { Button } from "@mui/material";
 import styled from "styled-components";
 
 export default function AnswerQuestionPage() {

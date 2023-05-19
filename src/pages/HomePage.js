@@ -64,13 +64,11 @@ const HomePage = () => {
 
   const handleLogin = async () => {
     const user = await GoogleLogin();
-    console.log(user);
     setUserInfo(user);
   };
 
   const handleLogout = async () => {
     await Logout();
-    console.log("logout");
     setUserInfo(null);
   };
 

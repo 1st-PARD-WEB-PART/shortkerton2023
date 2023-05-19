@@ -2,12 +2,13 @@ import { db } from "../firebase";
 import { collection, getDoc, setDoc, doc, query, where, getDocs, serverTimestamp  } from "firebase/firestore";
 import { v4 as uuid } from 'uuid';
 
-const questionCollection = collection(db, "message");
+const questionCollection = collection(db, "question");
 const answerCollection = collection(db, "answer");
 const userCollection = collection(db, "user");
 
 const SendQuery = async ({q}) => {
     const querySnapshot = await getDocs(q);
+    console.log(querySnapshot);
     return querySnapshot.docs.map((snap) => snap.data());
 }
 
@@ -17,8 +18,9 @@ const ReadQuestion = async ({questionId}) => {
 }
 
 const ReadAllMyQuestion = async ({userId}) => {
+    console.log("userId: " + userId);
     const q = query(questionCollection, where("creatorId", "==", userId));
-    return SendQuery({q: q});
+    return await SendQuery({q: q});
 }
 
 const ReadAllAnswerOfMyQuestion = async ({userId, questionId}) => {
@@ -31,7 +33,7 @@ const ReadAllAnswerOfMyQuestion = async ({userId, questionId}) => {
         return await ReadMyAnswerOfQuestion({userId, questionId});
     }
     const q = query(answerCollection, where("questionId", "==", questionId));
-    return SendQuery({q: q});
+    return await SendQuery({q: q});
 }
 
 const ReadMyAnswerOfQuestion = async ({userId, questionId}) => {
