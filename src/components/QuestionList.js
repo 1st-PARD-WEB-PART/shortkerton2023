@@ -4,7 +4,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import { ReadAllAnswerOfOwnQuestion, ReadAllAnswerOfQuestion } from '../services/DbService';
+import { ReadAllAnswerOfOwnQuestion, ReadAllAnswerOfQuestion, GetUserDisplayNameByUserId } from '../services/DbService';
 
 const PartDiv = styled.div`
   display: flex;
@@ -59,8 +59,6 @@ const QuestionList = ({ questionList, userId }) => {
             });
     }, [questionList, userId]);
 
-
-
     return (
         <PartDiv>
             <CollectWrapper>
@@ -80,12 +78,12 @@ const QuestionList = ({ questionList, userId }) => {
                             </AccordionSummary>
                             <AccordionDetails>
                                 {
-                                    loading
+                                    loading || answers[index] == null
                                         ? <div>loading...</div>
                                         : <div>
                                             {answers[index].map((answer, answerIndex) => (
                                                 <div key={answerIndex}>
-                                                    <Typography>"{answer.userId}"님의 답변</Typography>
+                                                    <Typography>"{answer.name ?? "익명"}"님의 답변</Typography>
                                                     <Typography>{answer.answer}</Typography>
                                                     <br />
                                                 </div>

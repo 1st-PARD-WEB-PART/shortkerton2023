@@ -62,13 +62,14 @@ const AddNewAnswerAsNotUser = async ({userName, questionId, answer}) => {
     return docRef;
 }
 
-const AddNewAnswer = async ({userId, questionId, answer}) => {
+const AddNewAnswer = async ({user, questionId, answer}) => {
     const answerId = uuid();
     const docRef = doc(db, "answer", answerId);
     const data = {
         answerId : answerId,
         questionId : questionId,
-        userId : userId,
+        name: user.displayName,
+        userId : user.uid,
         answer : answer,
         createdTime : serverTimestamp(),
     };

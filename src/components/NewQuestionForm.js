@@ -51,7 +51,7 @@ const NewQuestionForm = ({ user }) => {
 
   const handleClick = async () => {
     const questionDocRef = await AddNewQuestion({ userId: user.uid, question: question });
-    const answerDocRef = await AddNewAnswer({ userId: user.uid, questionId: questionDocRef.id, answer: answer });
+    const answerDocRef = await AddNewAnswer({ user: user, questionId: questionDocRef.id, answer: answer });
   };
 
   const handleOnChange = (event) => {

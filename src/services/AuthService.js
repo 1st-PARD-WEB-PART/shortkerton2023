@@ -1,6 +1,6 @@
 import { getAuth, signOut, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth"
 import { app } from "../firebase";
-import { AddNewAnswer, AddNewUser } from "./DbService";
+import { AddNewUser } from "./DbService";
 
 const auth = getAuth(app);
 
