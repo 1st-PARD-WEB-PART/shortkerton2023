@@ -21,7 +21,7 @@ const ArrowIcon = styled(BiChevronDown)`
 `;
 
 
-const Accordion = () => {
+const QuestionCard = () => {
     const [isExpanded, setIsExpanded] = useState(false);
 
     const toggleAccordion = () => {
@@ -40,4 +40,4 @@ return (
 )}
 </div>
 );}
-export default Accordion;
+export default QuestionCard;
