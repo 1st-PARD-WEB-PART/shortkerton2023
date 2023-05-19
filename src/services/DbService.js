@@ -11,7 +11,8 @@ const SendQuery = async ({q}) => {
 }
 
 const ReadQuestion = async ({questionId}) => {
-    const questionRef = doc(db, questionCollection, questionId);
+    console.log("got: " + questionId);
+    const questionRef = doc(db, "question", questionId);
     return await getDoc(questionRef);
 }
 

@@ -3,6 +3,7 @@ import { TextField, Button, Alert } from '@mui/material';
 import { AddNewAnswer, AddNewQuestion } from '../services/DbService';
 
 
+
 const AnswerQuestionForm = ({ user, questionData }) => {
     const [answer, setAnswer] = useState('');
 
@@ -19,6 +20,8 @@ const AnswerQuestionForm = ({ user, questionData }) => {
                 break;
         }
     }
+
+    
 
     return (
         <>
