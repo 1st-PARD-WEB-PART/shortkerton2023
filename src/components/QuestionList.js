@@ -58,7 +58,7 @@ const QuestionList = () => {
             id: 1,
             q: "Q. 가장 좋아하는 치킨은??",
             a: "갓튀긴 후라이드",
-            selected: "true",
+            selected: "false",
         },
         {
             id: 2,
@@ -103,7 +103,6 @@ const QuestionList = () => {
                         <ListItem
                             key={item.id}
                             disableGutters
-                            onClick={() => handleButtonClick(item.id)}
                             secondaryAction={
                                 <IconButton aria-label="comment">
                                     <GoComment />
@@ -112,7 +111,8 @@ const QuestionList = () => {
                         >
                             <ListItemText primary={item.q} />
                             <Box>
-                                <Check width="20px" height="20px" viewBox="0 0 20 20">
+                                <Check width="20px" height="20px" viewBox="0 0 20 20" onClick={() => handleButtonClick(item.id)}
+                                >
                                     {item.selected ? (
                                         <>
                                             <ListItemText primary={item.a} />
@@ -123,7 +123,6 @@ const QuestionList = () => {
                                     )}
                                 </Check>
                             </Box>
-                            {item.selected && <ListItemText primary={item.a} />}
                         </ListItem>
                     ))}
                 </List>
