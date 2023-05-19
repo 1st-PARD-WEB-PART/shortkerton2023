@@ -78,7 +78,7 @@ const NewQuestionForm = ({ user }) => {
         <TextField id="answer" variant="outlined" value={answer} onChange={(event) => handleOnChange(event)} />
       </Div>
       <Padding></Padding>
-      <Link to="/home">
+      <Link to="/ViewQuestion">
         <Button variant="contained" onClick={handleClick} disabled={user == null}>
           저장하기
         </Button>
