@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 import styled from "styled-components";
 import { useMediaQuery } from 'react-responsive'
@@ -35,3 +36,13 @@ function AboutPage() {
 }
 
 export default AboutPage;
+=======
+function AboutPage() {
+    
+    return <div>
+
+    </div>
+}
+
+export default AboutPage;
+>>>>>>> refs/remotes/origin/main
