@@ -1,6 +1,7 @@
 import { getAuth, signOut, signInWithPopup, GoogleAuthProvider } from "firebase/auth"
+import { app } from "../firebase";
 
-const auth = getAuth();
+const auth = getAuth(app);
 
 
 const GetCurrentUser = () => {
@@ -9,7 +10,9 @@ const GetCurrentUser = () => {
 
 const Logout = async () => {
     if (GetCurrentUser() != null) {
-        await signOut();
+        await signOut(auth);
+    } else{
+        console.log("user not found");
     }
 }
 
