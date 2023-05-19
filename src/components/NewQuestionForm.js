@@ -3,6 +3,7 @@ import styled from 'styled-components';
 // import { TextField, Button, Alert } from '@mui/material';
 import { AddNewAnswer, AddNewQuestion } from '../services/DbService';
 import { GetCurrentUser } from '../services/AuthService';
+import { Link } from 'react-router-dom';
 
 const Div = styled.div`
   display: flex;
@@ -23,11 +24,12 @@ const SmallText = styled.p`
   font-size: 12px;
   color: #9ABBBE;
   padding-top: 20px;
-  padding-left: 500px;
+  padding-left: 380px;
+  margin-right: 100px;
 `;
 
 const Padding = styled.div`
-  padding: 20px;
+  padding-top: 20px; /* Added top padding */
 `;
 
 const Button = styled.button`
@@ -38,16 +40,18 @@ const Button = styled.button`
   border: none;
   color: white;
   font-size: 16px;
+  margin-top: 20px;
+  margin-left: 560px;
+  margin-bottom: 100px;
 `;
-
 
 const NewQuestionForm = ({ user }) => {
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
 
-  const handleClick = async() => {
-    const questionDocRef = await AddNewQuestion({userId: user.uid, question: question});
-    const answerDocRef = await AddNewAnswer({userId: user.uid, questionId: questionDocRef.id, answer: answer});
+  const handleClick = async () => {
+    const questionDocRef = await AddNewQuestion({ userId: user.uid, question: question });
+    const answerDocRef = await AddNewAnswer({ userId: user.uid, questionId: questionDocRef.id, answer: answer });
   };
 
   const handleOnChange = (event) => {
@@ -72,10 +76,13 @@ const NewQuestionForm = ({ user }) => {
       <SmallText>나의 답변 입력</SmallText>
       <Div>
         <TextField id="answer" variant="outlined" value={answer} onChange={(event) => handleOnChange(event)} />
-        <Padding></Padding>
-        <Button variant="contained" onClick={handleClick} disabled={user == null}>저장하기</Button>
       </Div>
-    </>
+      <Padding></Padding>
+      <Link to="/home">
+        <Button variant="contained" onClick={handleClick} disabled={user == null}>
+          저장하기
+        </Button>
+      </Link>    </>
   );
 };
 

@@ -6,7 +6,7 @@ import HomeImage from '../assets/img/home.svg';
 import { useNavigate } from 'react-router-dom';
 
 const Wrapper = styled.div`
-  position: relative;
+  margin-bottom:100px;
 `;
 
 const Button = styled.button`
@@ -26,7 +26,7 @@ const Button = styled.button`
   border-radius: 50px;
   display: flex;
   align-items: center;
-  margin-bottom: 100px; /* Add margin-bottom */
+  margin-bottom: 10px; 
 `;
 
 const Image = styled.img`
@@ -45,7 +45,7 @@ const ButtonQ = styled.button`
   position: absolute;
   left: 50%;
   top: 70%;
-  margin-top: -10px;
+  margin-top: -40px;
   transform: translate(-50%, -50%);
 `;
 
