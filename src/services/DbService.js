@@ -11,7 +11,8 @@ const SendQuery = async ({q}) => {
 }
 
 const ReadQuestion = async ({questionId}) => {
-    const questionRef = doc(db, questionCollection, questionId);
+    console.log("got: " + questionId);
+    const questionRef = doc(db, "question", questionId);
     return await getDoc(questionRef);
 }
 
@@ -38,16 +39,29 @@ const ReadAllAnswerOfQuestion = async ({userId, questionId}) => {
     return SendQuery(q);
 }
 
-const AddNewAnswer = async ({userId, questionId, answer}) => {
-    console.log({userId, questionId, answer})
+const AddNewAnswerAsNotUser = async ({userName, questionId, answer}) => {
     const answerId = uuid();
     const docRef = doc(db, "answer", answerId);
     const data = {
-        answerIdField : answerId,
-        questionIdField : questionId,
-        userIdField : userId,
-        answerField : answer,
-        createdTimeField : serverTimestamp(),
+        answerId : answerId,
+        questionId : questionId,
+        userName : userName,
+        answer : answer,
+        createdTime : serverTimestamp(),
+    };
+    await setDoc(docRef, data);
+    return docRef;
+}
+
+const AddNewAnswer = async ({userId, questionId, answer}) => {
+    const answerId = uuid();
+    const docRef = doc(db, "answer", answerId);
+    const data = {
+        answerId : answerId,
+        questionId : questionId,
+        userId : userId,
+        answer : answer,
+        createdTime : serverTimestamp(),
     };
     await setDoc(docRef, data);
     return docRef;
@@ -68,4 +82,4 @@ const AddNewQuestion = async ({userId, question}) => {
     return docRef;
 }
 
-export {ReadQuestion, AddNewAnswer, AddNewQuestion, ReadAllAnswerOfQuestion, ReadAllMyQuestion, ReadAllAnswerOfOwnQuestion};
+export {AddNewAnswerAsNotUser, ReadQuestion, AddNewAnswer, AddNewQuestion, ReadAllAnswerOfQuestion, ReadAllMyQuestion, ReadAllAnswerOfOwnQuestion};
