@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { TextField, Button } from '@mui/material';
-import { AddNewQuestion } from '../services/DbService';
+import { TextField, Button, Alert } from '@mui/material';
+import { AddNewAnswer, AddNewQuestion } from '../services/DbService';
 import { GetCurrentUser } from '../services/AuthService';
 
 const Form = styled.form`
@@ -21,46 +21,36 @@ const Input = styled.input`
 `;
 
 
-const NewQuestionForm = () => {
-  const [managerData, setManagerData] = useState([
-    {
-      id: 1,
-      name: '질문을 입력하세요',
-      value: '',
-    },
-    {
-      id: 2,
-      name: '답변을 입력하세요',
-      value: '',
-    },
-  ]);
+const NewQuestionForm = ({user}) => {
+  const [question, setQuestion] = useState('');
+  const [answer, setAnswer] = useState('');
 
-  const handleClick = () => {
+  const handleClick = async() => {
+    const questionDocRef = await AddNewQuestion({userId: user.uid, question: question});
+    const answerDocRef = await AddNewAnswer({userId: user.uid, questionId: questionDocRef.id, answer: answer});
+    console.log("question: " + questionDocRef);
+    console.log("answer: " + answerDocRef);
   };
 
-  const handleInputChange = (event, id) => {
-    const updatedManagerData = managerData.map((content) => {
-      if (content.id === id) {
-        return {
-          ...content,
-          value: event.target.value,
-        };
-      }
-      return content;
-    });
-
-    setManagerData(updatedManagerData);
-  };
+  const handleOnChange = (event) => {
+    const target = event.target;
+    console.log(target.id);
+    switch(target.id){
+      case "question":
+        setQuestion(target.value);
+        break;
+      case "answer":
+        setAnswer(target.value);
+        break;
+    }
+  }
 
   return (
-    <Form>
-      {managerData.map((content) => (
-        <div key={content.id} style={{margin: "20px 0px"}}>
-          <TextField id="outlined-basic" label={content.name} variant="outlined" value={content.value} onChange={(event) => handleInputChange(event, content.id)} />
-        </div>
-      ))}
-      <Button variant="contained" onClick={handleClick} disabled = {GetCurrentUser() == null}>제출하기</Button>
-    </Form>
+    <>
+      <TextField id="question" label={"question"} variant="outlined" value={question} onChange={(event) => handleOnChange(event)} />
+      <TextField id="answer" label={"answer"} variant="outlined" value={answer} onChange={(event) => handleOnChange(event)} />
+      <Button variant="contained" onClick={handleClick} disabled = {user == null}>제출하기</Button>
+    </>
   );
 };
 
