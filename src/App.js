@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AddQuestionPage } from './pages/AddQuestionPage';
 import AnswerQuestionPage from './pages/AnswerQuestionPage';
 import CollectPage from './pages/CollectPage';
+import ViewQuestionPage from './pages/ViewQuestionPage';
 
  function App() {
     return <Router>
@@ -16,6 +17,7 @@ import CollectPage from './pages/CollectPage';
              <Route path="/Collection" element={<CollectPage/>} />
              <Route path="/AnswerQuestion/:questionId" element={<AnswerQuestionPage/>} />
              <Route path="/ViewQuestion/:questionId" element={<AnswerQuestionPage/>} />
+             <Route path="/ViewQuestion" element={<ViewQuestionPage />} />
              <Route path="/ViewAnswers" element={<ViewAnswersPage />} />
              <Route path="/About" element={<AboutPage />} />
          </Routes>
