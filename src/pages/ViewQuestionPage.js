@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import { GetCurrentUser} from "../services/AuthService";
+import { GetCurrentUser } from "../services/AuthService";
 import { useEffect, useState } from 'react';
 import { auth } from '../firebase';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { ReadQuestion, ReadUserByUid } from "../services/DbService";
 
 const Div = styled.div`
     display: flex;
@@ -85,30 +86,70 @@ const EndButton = styled.button`
 
 const ViewQuestion = () => {
     const [userInfo, setUserInfo] = useState(GetCurrentUser());
-    const [question, setQuestion] = useState();
+    const [question, setQuestion] = useState(null);
+    const [creator, setCreator] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const { questionId } = useParams();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                ReadQuestion({ questionId: questionId }).then((question) => {
+                    setQuestion(question);
+                    ReadUserByUid({ userId: question.creatorId }).then((creator) => {
+                        setCreator(creator);
+                        setLoading(false);
+                    })
+                })
+                // if (question == null) {
+                //     console.log("reading question...");
+                //     const foundedQuestion = await ReadQuestion({ questionId: questionId });
+                //     setQuestion(foundedQuestion);
+                // }
+                // if (question != null) {
+                //     console.log("reading creator...");
+                //     const foundedCreator = await ReadUserByUid({ userId: question.creatorId });
+                //     setCreator(foundedCreator);
+                // }
+                // if (question != null && creator != null) {
+                //     setLoading(false);
+                // }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
+    }, [userInfo]);
+
 
     const navigate = useNavigate();
 
     const handleNavigate = () => {
-      navigate('/NewQuestion');
+        navigate('/NewQuestion');
     };
 
     return (
         <>
-        
-        <FirstDiv>
-            <TextButton>답변보기</TextButton>
-            <TextButton>{userInfo.displayName}</TextButton>
-        </FirstDiv>
-        <Div>
-            <Box>
-                <SaveText> 저장되었습니다! </SaveText>
-                <QText>Q.</QText>
-                <QuestionText>{question}</QuestionText>
-                <LinkButton>링크 복사하기</LinkButton>
-                <EndButton onClick={handleNavigate}>닫기</EndButton>
-            </Box>
-        </Div>
+            {loading
+                ? <div>loading...</div>
+                : <div>
+                    <FirstDiv>
+                        <TextButton>답변보기</TextButton>
+                        <TextButton>{creator.name ?? "익명"}</TextButton>
+                    </FirstDiv>
+                    <Div>
+                        <Box>
+                            <SaveText> 저장되었습니다! </SaveText>
+                            <QText>Q.</QText>
+                            <QuestionText>{question.question}</QuestionText>
+                            <LinkButton>링크 복사하기</LinkButton>
+                            <EndButton onClick={handleNavigate}>닫기</EndButton>
+                        </Box>
+                    </Div>
+                </div>
+            }
+
         </>
     );
 }

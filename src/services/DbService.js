@@ -117,8 +117,9 @@ const GetUserDisplayNameByUserId = async ({userId}) => {
 }
 
 const DidAnswer = async ({userId, questionId}) => {
+    if(userId == null) return false;
     const foundedAnswer = await ReadMyAnswerOfQuestion({userId: userId, questionId: questionId});
     return foundedAnswer.length > 0;
 }
 
-export {GetUserDisplayNameByUserId, DidAnswer, AddNewUser, AddNewAnswerAsNotUser, ReadQuestion, AddNewAnswer, AddNewQuestion, ReadMyAnswerOfQuestion as ReadAllAnswerOfQuestion, ReadAllMyQuestion, ReadAllAnswerOfMyQuestion as ReadAllAnswerOfOwnQuestion};
+export {ReadUserByUid, GetUserDisplayNameByUserId, DidAnswer, AddNewUser, AddNewAnswerAsNotUser, ReadQuestion, AddNewAnswer, AddNewQuestion, ReadMyAnswerOfQuestion as ReadAllAnswerOfQuestion, ReadAllMyQuestion, ReadAllAnswerOfMyQuestion as ReadAllAnswerOfOwnQuestion};

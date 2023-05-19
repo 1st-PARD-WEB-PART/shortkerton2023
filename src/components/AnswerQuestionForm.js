@@ -9,9 +9,7 @@ const AnswerQuestionForm = ({ user, questionData }) => {
     const [hisAnswer, setHisAnswer] = useState('');
 
     const fetchAnswerData = async () => {
-        // while(questionData == null){
-        //     console.log(".");
-        // }
+        if(questionData == null) return;
         const foundedAnswerData = await ReadAllAnswerOfQuestion({ userId: questionData.creatorId, questionId: questionData.questionId });
         console.log(foundedAnswerData);
         setHisAnswer(foundedAnswerData == null ? null : foundedAnswerData.answer);
