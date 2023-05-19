@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+ import AboutPage from './pages/AboutPage';
+ import HomePage from './pages/HomePage';
+ import ScrollToTop from './components/ScrollToTop';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+ function App() {
+     return <Router>
+         <ScrollToTop/>
+         <Routes>
+             <Route path="/" element={<HomePage />} />
+             <Route path="/About" element={<AboutPage />} />
+             <Route path='/pard-website' element={<HomePage />} />
+         </Routes>
+     </Router>;
+};
 
 export default App;
