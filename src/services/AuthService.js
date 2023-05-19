@@ -1,17 +1,16 @@
-import { getAuth, signOut, signInWithPopup, GoogleAuthProvider } from "firebase/auth"
+import { getAuth, signOut, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth"
 import { app } from "../firebase";
 
 const auth = getAuth(app);
-
 
 const GetCurrentUser = () => {
     return auth.currentUser;
 }
 
 const Logout = async () => {
-    if (GetCurrentUser() != null) {
+    if (auth.currentUser != null) {
         await signOut(auth);
-    } else{
+    } else {
         console.log("user not found");
     }
 }
@@ -24,7 +23,7 @@ const LoginWithProvider = async ({ provider }) => {
         .catch((err) => {
             console.log(err);
         });
-} 
+}
 
 const GoogleLogin = async () => {
     const provider = new GoogleAuthProvider(); // provider 구글 설정
@@ -35,4 +34,4 @@ const IsLogin = () => {
     return GetCurrentUser() != null;
 }
 
-export { GetCurrentUser, Logout, GoogleLogin, IsLogin};
+export { GetCurrentUser, Logout, GoogleLogin, IsLogin };

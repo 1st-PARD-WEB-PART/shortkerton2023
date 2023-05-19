@@ -1,6 +1,6 @@
 import { db } from "../firebase";
 import { collection, getDoc, setDoc, doc, query, where, getDocs, serverTimestamp  } from "firebase/firestore";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuid } from 'uuid';
 
 const questionCollection = collection(db, "message");
 const answerCollection = collection(db, "answer");
@@ -25,7 +25,7 @@ const ReadAllAnswerOfOwnQuestion = async ({userId, questionId}) => {
     if(!questionSnapshot.exists()){
         return null;
     }
-    if(questionSnapshot.data()["creator-id"] != userId){
+    if(questionSnapshot.data()["creator-id"] !== userId){
         console.log("user does not have a permission to get all answers");
         return await ReadAllAnswerOfQuestion({userId, questionId});
     }
@@ -39,30 +39,32 @@ const ReadAllAnswerOfQuestion = async ({userId, questionId}) => {
 }
 
 const AddNewAnswer = async ({userId, questionId, answer}) => {
-    const answerId = uuidv4();
-    const docRef = doc(db, answerCollection, answerId);
-    const answerData = {
-        "answer-id" : answerId,
-        "question-id" : questionId,
-        "user-id" : userId,
-        "answer" : answer,
-        "created-time" : serverTimestamp(),
-    }
-    await setDoc(docRef, answerData);
+    console.log({userId, questionId, answer})
+    const answerId = uuid();
+    const docRef = doc(db, "answer", answerId);
+    const data = {
+        answerIdField : answerId,
+        questionIdField : questionId,
+        userIdField : userId,
+        answerField : answer,
+        createdTimeField : serverTimestamp(),
+    };
+    await setDoc(docRef, data);
     return docRef;
 }
 
-const AddNewQuestion = async ({userId, messageInfo}) => {
-    const questionId = uuidv4();
-    const docRef = doc(db, questionCollection, questionId);
-    const questionData = {
-        "question-id": questionId,
-        "creator-id": userId,
-        "question": messageInfo.message,
-        "created-time": serverTimestamp(),
-        "is-favorited" : false,
+const AddNewQuestion = async ({userId, question}) => {
+    console.log({userId, question})
+    const questionId = uuid();
+    const docRef = doc(db, "question", questionId);
+    const data = {
+        questionId: questionId,
+        creatorId: userId,
+        question: question,
+        createdTime: serverTimestamp(),
+        isFavorited : false,
     }
-    await setDoc(docRef, questionData);
+    await setDoc(docRef, data);
     return docRef;
 }
 
