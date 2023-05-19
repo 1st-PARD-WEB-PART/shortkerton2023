@@ -1,13 +1,19 @@
 import { db } from "../firebase";
-import { collection, getDoc, setDoc, doc } from "firebase/firestore";
+import { collection, getDoc, setDoc, doc, query, where, getDocs  } from "firebase/firestore";
 import { v4 as uuidv4 } from 'uuid';
 
-const messageCollection = collection(db, "message");
+const questionCollection = collection(db, "message");
 const answerCollection = collection(db, "answer");
 
 const ReadQuestion = async ({questionId}) => {
-    const questionRef = doc(db, messageCollection, questionId);
+    const questionRef = doc(db, questionCollection, questionId);
     return await getDoc(questionRef);
+}
+
+const ReadAllQuestion = async ({userId}) => {
+    const q = query(questionCollection, where("creator-id", "==", userId));
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.forEach((snap) => snap.data());
 }
 
 const AddNewAnswer = async ({userId, questionId, answer}) => {
@@ -16,6 +22,7 @@ const AddNewAnswer = async ({userId, questionId, answer}) => {
     const answerData = {
         "answer-id" : answerId,
         "question-id" : questionId,
+        "user-id" : userId,
         "answer" : answer,
     }
     await setDoc(docRef, answerData);
@@ -24,7 +31,7 @@ const AddNewAnswer = async ({userId, questionId, answer}) => {
 
 const AddNewQuestion = async ({userId, messageInfo}) => {
     const questionId = uuidv4();
-    const docRef = doc(db, messageCollection, questionId);
+    const docRef = doc(db, questionCollection, questionId);
     const questionData = {
         "question-id": questionId,
         "creator-id": userId,
@@ -34,4 +41,4 @@ const AddNewQuestion = async ({userId, messageInfo}) => {
     return docRef;
 }
 
-export {ReadQuestion, AddNewAnswer, AddNewQuestion};
+export {ReadQuestion, AddNewAnswer, AddNewQuestion, ReadAllQuestion};
