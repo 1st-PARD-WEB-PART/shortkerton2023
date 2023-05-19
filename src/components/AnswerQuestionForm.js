@@ -1,11 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { TextField, Button, Alert } from '@mui/material';
-import { AddNewAnswer, AddNewAnswerAsNotUser, AddNewQuestion } from '../services/DbService';
+import { AddNewAnswer, AddNewAnswerAsNotUser, AddNewQuestion, ReadAllAnswerOfQuestion } from '../services/DbService';
 import styled from 'styled-components';
 
 const AnswerQuestionForm = ({ user, questionData }) => {
     const [answer, setAnswer] = useState('');
     const [name, setName] = useState('');
+    const [hisAnswer, setHisAnswer] = useState('');
+
+    const fetchAnswerData = async () => {
+        // while(questionData == null){
+        //     console.log(".");
+        // }
+        const foundedAnswerData = await ReadAllAnswerOfQuestion({ userId: questionData.creatorId, questionId: questionData.questionId });
+        console.log(foundedAnswerData);
+        setHisAnswer(foundedAnswerData == null ? null : foundedAnswerData.answer);
+    }
+
+    useEffect(() => {
+        fetchAnswerData();
+
+    }, [])
 
     const handleClick = async () => {
         if (!questionData) {
@@ -28,6 +43,9 @@ const AnswerQuestionForm = ({ user, questionData }) => {
                 break;
             case "name":
                 setName(target.value);
+                break;
+            case "hisAnswer":
+                setHisAnswer(target.value);
                 break;
         }
     }
@@ -64,6 +82,17 @@ const AnswerQuestionForm = ({ user, questionData }) => {
         color: #757575;
         margin-top: 10px;
     `
+
+    const HisAnswer = styled.div`
+        font-family: 'Noto Sans KR';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 100px;
+        line-height: 17px;
+        text-align: center;
+        letter-spacing: -0.006em;
+        color: #000000;
+`
     const Induce = styled.div`
         font-family: 'Noto Sans KR';
         font-style: normal;
@@ -113,9 +142,13 @@ const AnswerQuestionForm = ({ user, questionData }) => {
                     <div>
                         {/* <Cloud width="20" height="20" viewBox="0 0 20 20"/>
                             <StyledPath d="M19.1906 0.5L10.3088 0.5L0.80901 19.5H9.69077L19.1906 0.5Z" /> */}
-                            <Name>{questionData.creatorId}의 질문</Name><br></br>
+                        <Name>{questionData.creatorId}의 질문</Name><br></br>
                     </div>
                     <Q>Q.<br></br>{questionData.question}</Q>
+                    <br></br>
+                    {/* { } */}
+                    <HisAnswer>{hisAnswer}</HisAnswer>
+                    {/* <HisAnswer>테스트</HisAnswer> */}
                     <br></br>
                     <Induce>{questionData.creatorId}님의 답변을 보려면 나의 답변을 작성해주세요!</Induce>
                     <AWrap>
