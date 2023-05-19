@@ -52,7 +52,7 @@ const FirstText = styled.text`
   align-items: center;
   color: #757575;
   padding-bottom: 8px;
-  margin-right: 130px;
+  margin-right: 110px;
 `;
 
 const SecondText = styled.text`
