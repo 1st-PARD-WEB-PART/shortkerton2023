@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { GetCurrentUser, GoogleLogin, IsLogin, Logout } from "../services/AuthService";
-import { useState , useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { auth } from '../firebase';
 import HomeImage from '../assets/img/home.svg';
 import { useNavigate } from 'react-router-dom';
@@ -10,14 +10,23 @@ const Wrapper = styled.div`
 `;
 
 const Button = styled.button`
-  background : none;
-  border : none;
-  color : #9ABBBE;
+  background: none;
+  border: none;
+  color: #9ABBBE;
   font-size: 12px;
-  padding : 40px;
+  padding: 20px 40px;
+  height: 40px;
   position: absolute;
-  left: 630px;
-  top: 600px;
+  left: 50%;
+  top: 50%;
+  margin-top: 300px;
+  transform: translate(-50%, -50%);
+  background: #FFFFFF;
+  border: 2px solid #9ABBBE;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 100px; /* Add margin-bottom */
 `;
 
 const Image = styled.img`
@@ -28,24 +37,25 @@ const Image = styled.img`
 const ButtonQ = styled.button`
   width: 260px;
   height: 56px;
-  background: #FAFAFA;
-  border : none;
+  background: #FFFFFF;
+  border: 2px solid #9ABBBE;
   border-radius: 50px;
-  color : #9ABBBE;
+  color: #9ABBBE;
   font-size: 20px;
   position: absolute;
-  left: 620px;
-  top: 501px;
-
+  left: 50%;
+  top: 70%;
+  margin-top: -10px;
+  transform: translate(-50%, -50%);
 `;
 
 const HomePage = () => {
   const [userInfo, setUserInfo] = useState(GetCurrentUser());
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-        setUserInfo(user);
-    })
-  });
+      setUserInfo(user);
+    });
+  }, []);
   const navigate = useNavigate();
 
   const handleNavigate = () => {
@@ -63,17 +73,18 @@ const HomePage = () => {
     console.log("logout");
     setUserInfo(null);
   };
-  
+
   return (
     <Wrapper>
       <Image src={HomeImage} alt="OnBoarding" />
 
-        <Button onClick={IsLogin() ? handleLogout : handleLogin} >{IsLogin() ? "로그아웃" : "질문을 만드려면 로그인을 하세요>"}</Button>
+      <Button onClick={IsLogin() ? handleLogout : handleLogin}>
+        {IsLogin() ? "로그아웃" : "질문을 만드려면 로그인을 하세요>"}
+      </Button>
 
-        <ButtonQ onClick={userInfo ? handleNavigate : handleLogin}>질문만들기</ButtonQ>
+      <ButtonQ onClick={userInfo ? handleNavigate : handleLogin}>질문만들기</ButtonQ>
     </Wrapper>
   );
-}
+};
 
 export default HomePage;
-
