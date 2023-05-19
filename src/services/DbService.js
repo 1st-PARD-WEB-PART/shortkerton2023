@@ -114,4 +114,4 @@ const DidAnswer = async ({userId, questionId}) => {
     return foundedAnswer.length > 0;
 }
 
-export {AddNewUser, AddNewAnswerAsNotUser, ReadQuestion, AddNewAnswer, AddNewQuestion, ReadMyAnswerOfQuestion as ReadAllAnswerOfQuestion, ReadAllMyQuestion, ReadAllAnswerOfMyQuestion as ReadAllAnswerOfOwnQuestion};
+export {DidAnswer, AddNewUser, AddNewAnswerAsNotUser, ReadQuestion, AddNewAnswer, AddNewQuestion, ReadMyAnswerOfQuestion as ReadAllAnswerOfQuestion, ReadAllMyQuestion, ReadAllAnswerOfMyQuestion as ReadAllAnswerOfOwnQuestion};
