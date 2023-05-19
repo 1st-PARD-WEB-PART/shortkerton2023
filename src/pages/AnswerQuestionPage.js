@@ -51,7 +51,7 @@ export default function AnswerQuestionPage() {
         font-size: 40px;
         line-height: 157.52%;
         color: #C99FA9;
-        display: inline;
+        text-align: center;
     `
     const H2 = styled.div`
         font-family: '210 OmniGothic';
@@ -60,12 +60,12 @@ export default function AnswerQuestionPage() {
         font-size: 20px;
         line-height: 157.52%;
         color: #E5B8C3;
-        display: inline;
+        text-align: center;
     `
 
     const Wrap = styled.div`
-        width: 514px;
-        height: 689px;
+        width: 444px;
+        height: 603px;
         background-color: #FACCDA;
         justify-content: center;
         border-radius: 40px;
@@ -73,10 +73,11 @@ export default function AnswerQuestionPage() {
     `
 
     const Text = styled.div`
-        margin-left: 800px;
+        /* margin-left: 800px; */
+        margin-top: 50px;
     `
     return <>
-        {userInfo
+        {/* {userInfo
             ? <Button onClick={handleLogout}>로그인아웃</Button>
             : <Button onClick={handleLogin}>로그인</Button>
         }
@@ -85,15 +86,15 @@ export default function AnswerQuestionPage() {
                 ? userInfo.displayName
                 : ""
             }
-        </div>
+        </div> */}
         { }
         <PartDiv>
             <Text>
                 <H2>너의 대답이</H2><H1> 궁그매</H1><br></br>
             </Text>
-            <Wrap>
+            {/* <Wrap> */}
                 <AnswerQuestionForm user={userInfo} questionData={questionData} />
-            </Wrap>
+            {/* </Wrap> */}
         </PartDiv>
     </>
 }
