@@ -1,16 +1,4 @@
 import TextField from "../components/TextField";
-import styled from 'styled-components';
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth } from "../../src/firebase";
-import { useEffect, useState } from "react";
-
-const H1 = styled.div`
-    color : #FFFFFF;
-`
-const LoginButton = styled.button`
-color: white
-`;
-
 
 function HomePage() {
     const [userData, setUserData] = useState(null);
@@ -28,18 +16,11 @@ function HomePage() {
 
 
     return (
-    <div>
-        <LoginButton onClick={handleGoogleLogin}>로그인</LoginButton>
-        {userData
-          ? userData.displayName : ""}
-        <div>
-            <H1>질문을 입력하시오</H1>
-            <TextField />
-            <H1>답변을 입력하시오</H1>
-            <TextField />
+        <div>        
+            
         </div>
-    </div>
     );
+
 }
 
 export default HomePage;
