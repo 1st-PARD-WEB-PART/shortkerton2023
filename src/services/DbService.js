@@ -4,10 +4,12 @@ import { v4 as uuid } from 'uuid';
 
 const questionCollection = collection(db, "message");
 const answerCollection = collection(db, "answer");
+const userCollection = collection(db, "user");
 
 const SendQuery = async ({q}) => {
+    console.log(q);
     const querySnapshot = await getDocs(q);
-    return querySnapshot.forEach((snap) => snap.data());
+    return querySnapshot.docs.map((snap) => snap.data());
 }
 
 const ReadQuestion = async ({questionId}) => {
@@ -17,26 +19,31 @@ const ReadQuestion = async ({questionId}) => {
 }
 
 const ReadAllMyQuestion = async ({userId}) => {
-    const q = query(questionCollection, where("creator-id", "==", userId));
-    return SendQuery(q);
+    const q = query(questionCollection, where("creatorId", "==", userId));
+    return SendQuery({q: q});
 }
 
-const ReadAllAnswerOfOwnQuestion = async ({userId, questionId}) => {
+const ReadAllAnswerOfMyQuestion = async ({userId, questionId}) => {
     const questionSnapshot = await ReadQuestion({questionId});
     if(!questionSnapshot.exists()){
         return null;
     }
-    if(questionSnapshot.data()["creator-id"] !== userId){
+    if(questionSnapshot.data()["creatorId"] !== userId){
         console.log("user does not have a permission to get all answers");
-        return await ReadAllAnswerOfQuestion({userId, questionId});
+        return await ReadMyAnswerOfQuestion({userId, questionId});
     }
-    const q = query(answerCollection, where("qeustion_id", "==", questionId));
-    return SendQuery(q);
+    const q = query(answerCollection, where("questionId", "==", questionId));
+    return SendQuery({q: q});
 }
 
-const ReadAllAnswerOfQuestion = async ({userId, questionId}) => {
-    const q = query(answerCollection, where("qeustion_id", "==", questionId), where("user-id", "==", userId));
-    return SendQuery(q);
+const ReadMyAnswerOfQuestion = async ({userId, questionId}) => {
+    const q = query(answerCollection, where("questionId", "==", questionId), where("userId", "==", userId));
+    return SendQuery({q: q});
+}
+
+const ReadUserByUid = async ({userId}) => {
+    const q = query(userCollection, where("userId", "==", userId));
+    return SendQuery({q: q});
 }
 
 const AddNewAnswerAsNotUser = async ({userName, questionId, answer}) => {
@@ -82,4 +89,29 @@ const AddNewQuestion = async ({userId, question}) => {
     return docRef;
 }
 
-export {AddNewAnswerAsNotUser, ReadQuestion, AddNewAnswer, AddNewQuestion, ReadAllAnswerOfQuestion, ReadAllMyQuestion, ReadAllAnswerOfOwnQuestion};
+const AddNewUser = async ({user}) => {
+    console.log({user})
+    const foundUser = (await ReadUserByUid({userId: user.uid}));
+    console.log("foundUser : " + foundUser + " type : " + typeof(foundUser));
+    if(foundUser.length != 0){
+        console.log("user is already saved in db");
+        return;
+    } 
+    console.log("user id: " + user.uid);
+    const docRef = doc(db, "user", user.uid);
+    const data = {
+        userId: user.uid,
+        name: user.name,
+        registeredTime: serverTimestamp(),
+    }
+    await setDoc(docRef, data);
+    console.log(user + " is added into db");
+    return docRef;
+}
+
+const DidAnswer = async ({userId, questionId}) => {
+    const foundedAnswer = await ReadMyAnswerOfQuestion({userId: userId, questionId: questionId});
+    return foundedAnswer.length > 0;
+}
+
+export {AddNewUser, AddNewAnswerAsNotUser, ReadQuestion, AddNewAnswer, AddNewQuestion, ReadMyAnswerOfQuestion as ReadAllAnswerOfQuestion, ReadAllMyQuestion, ReadAllAnswerOfMyQuestion as ReadAllAnswerOfOwnQuestion};
