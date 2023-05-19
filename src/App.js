@@ -7,8 +7,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
  function App() {
      return <Router>
          <Routes>
-             <Route path="/" element={<HomePage />} />
-             <Route path="/OnBoarding" element={<OnBoardingPage />} />
+             <Route path="/Home" element={<HomePage />} />
+             <Route path="/" element={<OnBoardingPage />} />
              <Route path="/ViewAnsers" element={<ViewAnswersPage />} />
              <Route path="/About" element={<AboutPage />} />
              <Route path='/pard-website' element={<HomePage />} />
