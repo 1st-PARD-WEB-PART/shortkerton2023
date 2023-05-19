@@ -66,8 +66,7 @@ const TextField = () => {
                     <Input type="text" value={inputText} onChange={(event) => handleInputChange(event, content.id)} />
                 </div>
             ))}
-            {/* <Button onClick={handleClick}>제출하기</Button> */}
-            <button>제출하기</button>
+            <Button onClick={handleClick}>제출하기</Button>
         </Form>
     );
 };
