@@ -5,6 +5,8 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import { ReadAllAnswerOfOwnQuestion, ReadAllAnswerOfQuestion, GetUserDisplayNameByUserId } from '../services/DbService';
+import { AiFillHome } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 const PartDiv = styled.div`
   display: flex;
@@ -31,7 +33,7 @@ const H2 = styled.div`
 `;
 
 const Hr = styled.hr`
-  width: 300px;
+  width: 400px;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -39,6 +41,14 @@ const Hr = styled.hr`
   margin-top: 10px;
   color: #5262f5;
 `;
+
+const StyledAiFillHome = styled(AiFillHome)`
+  width:30px;
+  height:30px;
+  margin-left: 230px;
+  color:#000000;
+`;
+
 
 const QuestionList = ({ questionList, userId }) => {
     const [loading, setLoading] = useState(true);
@@ -66,6 +76,9 @@ const QuestionList = ({ questionList, userId }) => {
                     <br></br><br></br>
                     <H1>"답변 모아보기"</H1>
                     {/* <H2>최대 10개 보관 가능</H2> */}
+                    <Link to="/home">
+                        <StyledAiFillHome />
+                    </Link>
                     <Hr /><br></br>
                     {questionList.map((item, index) => (
                         <Accordion key={item.questionId} sx={{ width: '400px' }}>
