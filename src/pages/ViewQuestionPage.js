@@ -94,26 +94,19 @@ const ViewQuestion = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                ReadQuestion({ questionId: questionId }).then((question) => {
-                    setQuestion(question);
-                    ReadUserByUid({ userId: question.creatorId }).then((creator) => {
-                        setCreator(creator);
-                        setLoading(false);
-                    })
-                })
-                // if (question == null) {
-                //     console.log("reading question...");
-                //     const foundedQuestion = await ReadQuestion({ questionId: questionId });
-                //     setQuestion(foundedQuestion);
-                // }
-                // if (question != null) {
-                //     console.log("reading creator...");
-                //     const foundedCreator = await ReadUserByUid({ userId: question.creatorId });
-                //     setCreator(foundedCreator);
-                // }
-                // if (question != null && creator != null) {
-                //     setLoading(false);
-                // }
+                console.log("reading question...");
+                const foundedQuestion = await ReadQuestion({ questionId: questionId });
+                setQuestion(foundedQuestion.data());
+                console.log("set question: " + foundedQuestion.data().question);
+                
+                    console.log("reading creator...");
+                    const foundedCreator = await ReadUserByUid({ userId: foundedQuestion.data().creatorId });
+                    setCreator(foundedCreator.data());
+                    console.log("set creator: " + foundedCreator.data().name);
+                
+                
+                    setLoading(false);
+                
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -121,6 +114,7 @@ const ViewQuestion = () => {
 
         fetchData();
     }, [userInfo]);
+
 
 
     const navigate = useNavigate();
