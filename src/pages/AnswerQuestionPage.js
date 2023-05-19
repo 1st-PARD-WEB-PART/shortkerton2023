@@ -20,7 +20,7 @@ export default function AnswerQuestionPage() {
         const FetchData = async () => {
             const questionRef = await ReadQuestion({ questionId: questionId });
             const data = questionRef.data();
-            
+
             setQuestionData(data);
         }
 
@@ -36,6 +36,14 @@ export default function AnswerQuestionPage() {
 
     };
 
+    const PartDiv = styled.div`
+        display: flex;
+        flex-direction: column;
+        height: 850px;
+        align-items: center;
+        justify-content: center;
+        `;
+
     const H1 = styled.div`
         font-family: '210 Gulim';
         font-style: normal;
@@ -43,8 +51,8 @@ export default function AnswerQuestionPage() {
         font-size: 40px;
         line-height: 157.52%;
         color: #C99FA9;
+        display: inline;
     `
-
     const H2 = styled.div`
         font-family: '210 OmniGothic';
         font-style: normal;
@@ -54,8 +62,20 @@ export default function AnswerQuestionPage() {
         color: #E5B8C3;
         display: inline;
     `
+
+    const Wrap = styled.div`
+        width: 514px;
+        height: 689px;
+        background-color: #FACCDA;
+        justify-content: center;
+        border-radius: 40px;
+        margin-bottom: 50px;
+    `
+
+    const Text = styled.div`
+        margin-left: 800px;
+    `
     return <>
-        <H2>너의 대답이</H2><H1>궁그매</H1>
         {userInfo
             ? <Button onClick={handleLogout}>로그인아웃</Button>
             : <Button onClick={handleLogin}>로그인</Button>
@@ -67,7 +87,17 @@ export default function AnswerQuestionPage() {
             }
         </div>
         { }
-        <AnswerQuestionForm user={userInfo} questionData={questionData} />
+        <PartDiv>
+            <Text>
+                <H2>너의 대답이</H2><H1> 궁그매</H1><br></br>
+            </Text>
+            <Wrap>
+                <AnswerQuestionForm user={userInfo} questionData={questionData} />
+            </Wrap>
+        </PartDiv>
     </>
 }
+
+
+//e7be59ad-01ac-462a-83fc-75cf0bc4bbe2
 
