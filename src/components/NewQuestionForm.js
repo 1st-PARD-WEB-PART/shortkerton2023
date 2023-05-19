@@ -21,7 +21,7 @@ const Button = styled.button`
   color: #5262f5;
 `;
 
-const YourQuestionForm = () => {
+const NewQuestionForm = () => {
   const [managerData, setManagerData] = useState([
     {
       id: 1,
@@ -70,4 +70,4 @@ const YourQuestionForm = () => {
   );
 };
 
-export default YourQuestionForm;
+export default NewQuestionForm;
