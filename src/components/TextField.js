@@ -30,10 +30,6 @@ const TextField = () => {
         setClicked(true);
     };
 
-    const handleChange = (event) => {
-        setInputText(event.target.value);
-    };
-
     const managerData = [
         {
             id: 1,
