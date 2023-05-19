@@ -11,6 +11,7 @@ const Wrapper = styled.div`
 
 const Image = styled.img`
     width: 100%;
+    max-height: 100vh;
 `;
 
 function OnBoardingPage() {
@@ -26,10 +27,14 @@ function OnBoardingPage() {
 
     useEffect(() => {
         if (!showOnBoarding) {
-          // 3초가 지나면 HomePage로 이동
-          navigate('/home');
+          const delay = setTimeout(() => {
+            navigate('/home');
+          }, 500); // 애니메이션 시간과 동일한 딜레이를 줍니다.
+    
+          return () => clearTimeout(delay);
         }
       }, [showOnBoarding, navigate]);
+    
 
     return (
         <Wrapper show={showOnBoarding}>
