@@ -43,11 +43,11 @@ const AddNewAnswer = async ({userId, questionId, answer}) => {
     const answerId = uuid();
     const docRef = doc(db, "answer", answerId);
     const data = {
-        answerIdField : answerId,
-        questionIdField : questionId,
-        userIdField : userId,
-        answerField : answer,
-        createdTimeField : serverTimestamp(),
+        answerId : answerId,
+        questionId : questionId,
+        userId : userId,
+        answer : answer,
+        createdTime : serverTimestamp(),
     };
     await setDoc(docRef, data);
     return docRef;
