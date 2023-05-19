@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import onBoardingImage from '../assets/img/onBoarding.svg';
 import styled from 'styled-components';
 
@@ -14,6 +15,7 @@ const Image = styled.img`
 
 function OnBoardingPage() {
     const [showOnBoarding, setShowOnBoarding] = useState(true);
+    const navigate = useNavigate();
     useEffect(() => {
         const timer = setTimeout(() => {
             setShowOnBoarding(false);
@@ -21,6 +23,13 @@ function OnBoardingPage() {
 
         return () => clearTimeout(timer);
     }, []);
+
+    useEffect(() => {
+        if (!showOnBoarding) {
+          // 3초가 지나면 HomePage로 이동
+          navigate('/home');
+        }
+      }, [showOnBoarding, navigate]);
 
     return (
         <Wrapper show={showOnBoarding}>
