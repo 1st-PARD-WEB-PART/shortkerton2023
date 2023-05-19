@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
  import OnBoardingPage from './pages/OnBoardingPage';
 import { AddQuestionPage } from './pages/AddQuestionPage';
 import AnswerQuestionPage from './pages/AnswerQuestionPage';
+import CollectPage from './pages/CollectPage';
 
  function App() {
     return <Router>
@@ -12,6 +13,7 @@ import AnswerQuestionPage from './pages/AnswerQuestionPage';
              <Route path="/Home" element={<HomePage />} />
              <Route path="/" element={<OnBoardingPage />} />
              <Route path="/NewQuestion" element={<AddQuestionPage/>} />
+             <Route path="/Collection" element={<CollectPage/>} />
              <Route path="/AnswerQuestion/:questionId" element={<AnswerQuestionPage/>} />
              <Route path="/ViewQuestion/:questionId" element={<AnswerQuestionPage/>} />
              <Route path="/ViewAnswers" element={<ViewAnswersPage />} />

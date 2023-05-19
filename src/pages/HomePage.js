@@ -61,7 +61,6 @@ const HomePage = () => {
         <ButtonQ>질문만들기</ButtonQ>
     </Wrapper>
   );
-
 }
 
 export default HomePage;
