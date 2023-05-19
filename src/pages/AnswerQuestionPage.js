@@ -5,7 +5,7 @@ import AnswerQuestionForm from "../components/AnswerQuestionForm";
 import { GoogleLogin, Logout } from "../services/AuthService";
 import { auth } from '../firebase';
 import { Button } from "@mui/material";
-
+import styled from "styled-components";
 
 export default function AnswerQuestionPage() {
     const [questionData, setQuestionData] = useState(null);
@@ -33,9 +33,29 @@ export default function AnswerQuestionPage() {
 
     const handleLogout = async () => {
         await Logout();
+
     };
+
+    const H1 = styled.div`
+        font-family: '210 Gulim';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 40px;
+        line-height: 157.52%;
+        color: #C99FA9;
+    `
+
+    const H2 = styled.div`
+        font-family: '210 OmniGothic';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 157.52%;
+        color: #E5B8C3;
+        display: inline;
+    `
     return <>
-    {console.log("question data: " + questionData)}
+        <H2>너의 대답이</H2><H1>궁그매</H1>
         {userInfo
             ? <Button onClick={handleLogout}>로그인아웃</Button>
             : <Button onClick={handleLogin}>로그인</Button>
