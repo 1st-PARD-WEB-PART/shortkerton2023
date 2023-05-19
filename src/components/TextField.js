@@ -33,11 +33,11 @@ const TextField = () => {
     const managerData = [
         {
             id: 1,
-            name: '질문',
+            name: '질문을 입력하세요',
         },
         {
             id: 2,
-            name: '답변',
+            name: '답변을 입력하세요',
         },
     ];
 
