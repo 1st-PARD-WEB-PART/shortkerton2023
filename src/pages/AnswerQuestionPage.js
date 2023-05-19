@@ -2,32 +2,32 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ReadQuestion } from "../services/DbService";
 import AnswerQuestionForm from "../components/AnswerQuestionForm";
-import {GoogleLogin, Logout } from "../services/AuthService";
+import { GoogleLogin, Logout } from "../services/AuthService";
 import { auth } from '../firebase';
 import { Button } from "@mui/material";
 
 
-export default function AnswerQuestionPage(){
+export default function AnswerQuestionPage() {
     const [questionData, setQuestionData] = useState(null);
     const [userInfo, setUserInfo] = useState(null);
     const { questionId } = useParams();
-    
+
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
             setUserInfo(user);
         })
-        
+
         const FetchData = async () => {
             console.log(questionId);
-            const questionRef = await ReadQuestion({questionId: questionId});
+            const questionRef = await ReadQuestion({ questionId: questionId });
             const data = questionRef.data();
-            
+
             setQuestionData(data);
-        } 
-        
+        }
+
         FetchData().catch(console.error);
     }, []);
-    
+
     const handleLogin = async () => {
         await GoogleLogin();
     };
@@ -36,18 +36,18 @@ export default function AnswerQuestionPage(){
         await Logout();
     };
     return <>
-    {userInfo 
-                ? <Button onClick={handleLogout}>로그인아웃</Button>
-                : <Button onClick={handleLogin}>로그인</Button>
+        {userInfo
+            ? <Button onClick={handleLogout}>로그인아웃</Button>
+            : <Button onClick={handleLogin}>로그인</Button>
+        }
+        <div>
+            {userInfo != null
+                ? userInfo.displayName
+                : ""
             }
-            <div>
-                {userInfo != null
-                    ? userInfo.displayName
-                    : ""
-                }
-            </div>
-            {}
-        <AnswerQuestionForm user={userInfo} questionData={questionData}/>
+        </div>
+        { }
+        <AnswerQuestionForm user={userInfo} questionData={questionData} />
     </>
 }
 
