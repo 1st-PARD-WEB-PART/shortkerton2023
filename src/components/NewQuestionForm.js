@@ -3,7 +3,7 @@ import styled from 'styled-components';
 // import { TextField, Button, Alert } from '@mui/material';
 import { AddNewAnswer, AddNewQuestion } from '../services/DbService';
 import { GetCurrentUser } from '../services/AuthService';
-import { navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Div = styled.div`
   display: flex;
@@ -48,6 +48,7 @@ const Button = styled.button`
 const NewQuestionForm = ({ user }) => {
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
+  const navigate = useNavigate();
 
   const handleClick = async () => {
     const questionDocRef = await AddNewQuestion({ userId: user.uid, question: question });
