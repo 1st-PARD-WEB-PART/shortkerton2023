@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-
-
 function AboutPage() {
     
     return <div>
@@ -9,5 +6,3 @@ function AboutPage() {
 }
 
 export default AboutPage;
-=======
->>>>>>> refs/remotes/origin/main
