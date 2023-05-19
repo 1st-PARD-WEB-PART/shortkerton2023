@@ -52,7 +52,6 @@ const NewQuestionForm = ({ user }) => {
 
   const handleOnChange = (event) => {
     const target = event.target;
-    console.log(target.id);
     switch (target.id) {
       case "question":
         setQuestion(target.value);
