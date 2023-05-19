@@ -14,7 +14,7 @@ const Button = styled.button`
   font-size: 12px;
   padding : 40px;
   position: absolute;
-  left: 680px;
+  left: 620px;
   top: 501px;
 `;
 
