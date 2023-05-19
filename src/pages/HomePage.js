@@ -19,10 +19,10 @@ const Button = styled.button`
   position: absolute;
   left: 50%;
   top: 50%;
-  margin-top: 300px;
+  margin-top: 200px;
   transform: translate(-50%, -50%);
   background: #FFFFFF;
-  border: 2px solid #9ABBBE;
+  border: none;
   border-radius: 50px;
   display: flex;
   align-items: center;
