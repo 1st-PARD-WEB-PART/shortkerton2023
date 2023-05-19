@@ -8,7 +8,7 @@ const AnswerQuestionForm = ({ user, questionData }) => {
     const [answer, setAnswer] = useState('');
     const [name, setName] = useState('');
 
-    const handleClick = async ({userName}) => {
+    const handleClick = async () => {
         let answerDocRef;
         if(user){
             answerDocRef = await AddNewAnswer({ userId: user.uid, questionId: questionData.questionId, answer: answer });
