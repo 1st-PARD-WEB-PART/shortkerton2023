@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import NewQuestionForm from "../components/NewQuestionForm";
-import { IsLogin } from "../services/AuthService";
+import { GetCurrentUser, IsLogin } from "../services/AuthService";
 
 const Button = styled.button`
 background : white;
@@ -11,7 +11,7 @@ function HomePage() {
       <Button onClick={handleGoogleLogin}>로그인</Button>
       <div>
         {IsLogin()
-          ? userData.displayName
+          ? GetCurrentUser().displayName
           : ""}
 
       </div>
