@@ -1,10 +1,10 @@
-import { getAuth, signOut, signInWithPopup } from "firebase/auth"
+import { getAuth, signOut, signInWithPopup, GoogleAuthProvider } from "firebase/auth"
 
-const user = getAuth();
+const auth = getAuth();
 
 
 const GetCurrentUser = () => {
-    return user.currentUser;
+    return auth.currentUser;
 }
 
 const Logout = async () => {
