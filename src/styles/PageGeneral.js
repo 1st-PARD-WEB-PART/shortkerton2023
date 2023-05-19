@@ -6,10 +6,14 @@ const PageContaienr = () => {
     </div>
 }
 
-const NavContainer = () => {
-    return <nav>
+const TopNavContainer = () => {
+    return <nav className = "top-nav">
 
     </nav>
 }
 
-export {PageContaienr, NavContainer};
+const SideBarContainer = () => {
+
+}
+
+export {PageContaienr, TopNavContainer, SideBarContainer};
