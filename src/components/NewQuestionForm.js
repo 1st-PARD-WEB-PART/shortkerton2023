@@ -3,7 +3,7 @@ import styled from 'styled-components';
 // import { TextField, Button, Alert } from '@mui/material';
 import { AddNewAnswer, AddNewQuestion } from '../services/DbService';
 import { GetCurrentUser } from '../services/AuthService';
-import { Link } from 'react-router-dom';
+import { navigate } from 'react-router-dom';
 
 const Div = styled.div`
   display: flex;
@@ -52,6 +52,7 @@ const NewQuestionForm = ({ user }) => {
   const handleClick = async () => {
     const questionDocRef = await AddNewQuestion({ userId: user.uid, question: question });
     const answerDocRef = await AddNewAnswer({ userId: user.uid, questionId: questionDocRef.id, answer: answer });
+    navigate(`/ViewQuestion/${questionDocRef.id}`);
   };
 
   const handleOnChange = (event) => {
@@ -77,11 +78,10 @@ const NewQuestionForm = ({ user }) => {
         <TextField id="answer" variant="outlined" value={answer} onChange={(event) => handleOnChange(event)} />
       </Div>
       <Padding></Padding>
-      <Link to="/ViewQuestion">
-        <Button variant="contained" onClick={handleClick} disabled={user == null}>
-          저장하기
-        </Button>
-      </Link>    </>
+      <Button variant="contained" onClick={handleClick} disabled={user == null}>
+        저장하기
+      </Button>
+    </>
   );
 };
 
