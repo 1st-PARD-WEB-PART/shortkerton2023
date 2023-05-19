@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { TextField, Button, Alert } from '@mui/material';
-import { AddNewAnswer, AddNewAnswerAsNotUser, AddNewQuestion, ReadAllAnswerOfQuestion } from '../services/DbService';
+import { AddNewAnswer, AddNewAnswerAsNotUser, AddNewQuestion, ReadAllAnswerOfQuestion, ReadUserByUid } from '../services/DbService';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -8,17 +8,22 @@ const AnswerQuestionForm = ({ user, questionData }) => {
     const [answer, setAnswer] = useState('');
     const [name, setName] = useState('');
     const [hisAnswer, setHisAnswer] = useState('');
+    const [creator, setCreator] = useState(null);
 
     const fetchAnswerData = async () => {
         if(questionData == null) return;
-        const foundedAnswerData = await ReadAllAnswerOfQuestion({ userId: questionData.creatorId, questionId: questionData.questionId });
-        console.log(foundedAnswerData);
-        setHisAnswer(foundedAnswerData == null ? null : foundedAnswerData.answer);
+        console.log(questionData.creatorId);
+        console.log(questionData.questionId);
+        // const foundedAnswerData = await ReadAllAnswerOfQuestion({ userId: questionData.creatorId, questionId: questionData.questionId });
+        // console.log(foundedAnswerData);
+        // const answerData = foundedAnswerData.data();
+        // setHisAnswer(answerData == null ? null : answerData.answer);
+
+        setHisAnswer("너는 여행할 때 어떤 유형이야?");
     }
 
     useEffect(() => {
         fetchAnswerData();
-
     }, [])
 
     const handleClick = async () => {
@@ -86,7 +91,7 @@ const AnswerQuestionForm = ({ user, questionData }) => {
         font-family: 'Noto Sans KR';
         font-style: normal;
         font-weight: 400;
-        font-size: 100px;
+        font-size: 20px;
         line-height: 17px;
         text-align: center;
         letter-spacing: -0.006em;
