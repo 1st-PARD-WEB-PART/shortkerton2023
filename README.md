@@ -13,26 +13,33 @@
 애매한 관계에 있는 대상에게 궁금한 것이 있어도 물어보기 어려운 경우가 많다. 이를 해결하기 위해 질문을 간접적으로 센스있게 보낼 수 있는 서비스를 생각해냈다.
 
 ### OnBoardingPart
+웹에 대한 기본적인 기능을 소개하는 페이지
 <img width="1512" alt="Pasted Graphic 27" src="https://github.com/KSH-KOR/shortkerton2023/assets/103620720/2e2933d3-f76a-4cbf-872b-a904c492bd87">
 
 ### HomePart
+사용자 로그인과 질문을 생성하기 위한 메인 페이지
 <img width="1512" alt="Pasted Graphic 29" src="https://github.com/KSH-KOR/shortkerton2023/assets/103620720/cd86b54a-a7ce-4aea-9468-e8cca81a4057">
 
 ### Google Login
+구글 로그인으로 로그인 진행
 <img width="1511" alt="Pasted Graphic 30" src="https://github.com/KSH-KOR/shortkerton2023/assets/103620720/5dc0fd27-f130-4e34-bdfc-3ad79a5a7a4f">
 
 ### AddQuestionPart
+질문을 추가하고 사용자가 답을 적고 보내는 페이지
 <img width="898" alt="Pasted Graphic 31" src="https://github.com/KSH-KOR/shortkerton2023/assets/103620720/56d9677e-4db2-4e35-80ce-7c3f85278ee3">
 
 ### ViewQuestionPart
+보낸 질문을 확인하는 페이지
 ![image](https://github.com/KSH-KOR/shortkerton2023/assets/103620720/2a513cd6-eded-4a26-91a8-4c800693b697)
 
 
 ### ViewAnswerPart
+질문을 받고 질문에 대한 답을 남겼을 경우 보낸 사람의 답을 확인할 수 있는 페이지
 ![image](https://github.com/KSH-KOR/shortkerton2023/assets/103620720/af24ddfc-965d-4f51-9ede-044f6cf17ac5)
 
 
 ### CollectPart
+질문들과 답을 확인할 수 있는 페이지
 ![image](https://github.com/KSH-KOR/shortkerton2023/assets/103620720/bb31ba25-7f1f-4005-a3a9-47157fb86638)
 
 
