@@ -25,14 +25,21 @@
 <img width="898" alt="Pasted Graphic 31" src="https://github.com/KSH-KOR/shortkerton2023/assets/103620720/56d9677e-4db2-4e35-80ce-7c3f85278ee3">
 
 ### ViewQuestionPart
+![image](https://github.com/KSH-KOR/shortkerton2023/assets/103620720/2a513cd6-eded-4a26-91a8-4c800693b697)
 
 
 ### ViewAnswerPart
+![image](https://github.com/KSH-KOR/shortkerton2023/assets/103620720/af24ddfc-965d-4f51-9ede-044f6cf17ac5)
 
 
 ### CollectPart
-<img width="1512" alt="image" src="https://github.com/KSH-KOR/shortkerton2023/assets/103620720/daf123ac-118d-4268-a860-42dc291fd4c2">
+![image](https://github.com/KSH-KOR/shortkerton2023/assets/103620720/bb31ba25-7f1f-4005-a3a9-47157fb86638)
 
 
 
-
+<br><br><br>
+기획자 : 한동대학교 ACE & 경영학부 백예은
+<br>
+디자이너 : 한동대학교 국제어문학부 & ICT 학부 윤새은
+<br>
+웹 개발자 : 한동대학교 전산전자공학부 김신후, 이한나, 윤성현
