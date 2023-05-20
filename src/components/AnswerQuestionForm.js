@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { TextField, Button, Alert } from '@mui/material';
-<<<<<<< HEAD
-import { AddNewAnswer, AddNewAnswerAsNotUser, AddNewQuestion, ReadAllAnswerOfQuestion, ReadUserByUid } from '../services/DbService';
-=======
 import { AddNewAnswer, AddNewAnswerAsNotUser, AddNewQuestion, ReadAllAnswerOfQuestion, DidAnswer } from '../services/DbService';
->>>>>>> refs/remotes/origin/main
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -12,7 +8,6 @@ const AnswerQuestionForm = ({ user, questionData }) => {
     const [answer, setAnswer] = useState('');
     const [name, setName] = useState('');
     const [hisAnswer, setHisAnswer] = useState('');
-<<<<<<< HEAD
     const [creator, setCreator] = useState(null);
 
     const fetchAnswerData = async () => {
@@ -25,30 +20,11 @@ const AnswerQuestionForm = ({ user, questionData }) => {
         // setHisAnswer(answerData == null ? null : answerData.answer);
 
         setHisAnswer("너는 여행할 때 어떤 유형이야?");
-=======
-    const [alreadyAnswered, setAlreadyAnswered] = useState('');
-
-    const fetchAnswerData = async () => {
-        if (questionData == null) return;
-        const foundedAnswerData = await ReadAllAnswerOfQuestion({ userId: questionData.creatorId, questionId: questionData.questionId });
-        console.log(foundedAnswerData);
-        setHisAnswer(foundedAnswerData == null ? null : foundedAnswerData.answer);
->>>>>>> refs/remotes/origin/main
     }
 
     useEffect(() => {
         fetchAnswerData();
-<<<<<<< HEAD
-=======
-        const checkAnswer = async () => {
-            const answered = await DidAnswer({
-                userId: questionData.creatorId,
-                questionId: questionData.questionId,
-            });
-            setAlreadyAnswered(answered);
-        };
 
->>>>>>> refs/remotes/origin/main
     }, [])
 
     const handleClick = async () => {
