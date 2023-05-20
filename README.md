@@ -1,71 +1,34 @@
-# Getting Started with Create React App
+# PARD - shortkerton2023
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 웹사이트 '궁그매'가 나오기까지의 과정
+## '궁그매'란 ? 질의응답을 통한 관계 개선 서비스로, 질문자가 답변과 함께 궁금한 질문을 보내고, 답변자는 질문자의 답변을 볼 수 없는 상태에서 답변을 제공 후 질문자의 답변을 파악하게 해주는 서비스
+### 2023년 5월 19일 금요일 오후 7시부터 5월 20일 토요일 오전 10시까지 숏커톤으로 진행
+### 기획자 한 명, 디자이너 한 명, 웹 개발자 세 명이 함께한 단기간 프로젝트
 
-## Available Scripts
+### 숏커톤 프로젝트 주제 : 'Change'
+### 애매한 관계에 있는 대상에게 궁금한 것이 있어도 물어보기 어려운 경우가 많다. 이를 해결하기 위해 질문을 간접적으로 센스있게 보낼 수 있는 서비스를 생각해냈다.
 
-In the project directory, you can run:
+### OnBoardingPart
+<img width="1512" alt="Pasted Graphic 27" src="https://github.com/KSH-KOR/shortkerton2023/assets/103620720/2e2933d3-f76a-4cbf-872b-a904c492bd87">
 
-### `npm start`
+### HomePart
+<img width="1512" alt="Pasted Graphic 29" src="https://github.com/KSH-KOR/shortkerton2023/assets/103620720/cd86b54a-a7ce-4aea-9468-e8cca81a4057">
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Google Login
+<img width="1511" alt="Pasted Graphic 30" src="https://github.com/KSH-KOR/shortkerton2023/assets/103620720/5dc0fd27-f130-4e34-bdfc-3ad79a5a7a4f">
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### AddQuestionPart
+<img width="898" alt="Pasted Graphic 31" src="https://github.com/KSH-KOR/shortkerton2023/assets/103620720/56d9677e-4db2-4e35-80ce-7c3f85278ee3">
 
-### `npm test`
+### ViewQuestionPart
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### ViewAnswerPart
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### CollectPart
+<img width="1512" alt="image" src="https://github.com/KSH-KOR/shortkerton2023/assets/103620720/daf123ac-118d-4268-a860-42dc291fd4c2">
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# shortkerton2023
